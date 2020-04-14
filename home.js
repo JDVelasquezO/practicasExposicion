@@ -6,11 +6,13 @@ let weigth = document.getElementById("weigth")
 let type = document.getElementById("type")
 
 let array = []
+let id = 1
 
 form.addEventListener('submit', e => {
     e.preventDefault()
 
     pet = {
+        id: id,
         name: name.value,
         weigth: weigth.value,
         type: type.value
@@ -32,7 +34,7 @@ form.addEventListener('submit', e => {
     array.map(p => {
         table += `
             <tr>
-                <td>1</td>
+                <td>${p.id}</td>
                 <td>${p.name}</td>
                 <td>${p.weigth}</td>
                 <td>${p.type}</td>
@@ -50,6 +52,7 @@ form.addEventListener('submit', e => {
     info.innerHTML = table
 
     resetForm()
+    id += 1
 })
 
 let resetForm = () => {
