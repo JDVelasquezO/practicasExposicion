@@ -4,9 +4,13 @@ const info = document.getElementById("info")
 let name = document.getElementById("name")
 let weigth = document.getElementById("weigth")
 let type = document.getElementById("type")
+let welcome = document.getElementById('welcome')
 
 let array = []
 let id = 1
+
+let username = localStorage.getItem('name')
+welcome.innerHTML = `Bienvenido ${username}`
 
 form.addEventListener('submit', e => {
     e.preventDefault()
