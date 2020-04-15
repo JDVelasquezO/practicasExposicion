@@ -106,18 +106,13 @@ let viewUpdatePet = (id) => {
         </div>
     </div>
     `   
-    // <form onsubmit='updatePet(event, ${id})'>
-    //     Nombre: <input autofocus value='${name}' /><br>
-    //     Peso: <input value='${weigth}' type='number' /><br>
-    //     Tipo: <input value='${type}' /><br>
-    //     <button>Actualizar</button>
-    // </form>
     info.innerHTML = formPet
 }
 
 let updatePet = (e, id) => {
 
     e.preventDefault()
+    // console.log(e)
     let name = e.path[0].elements[0].value
     let weigth = e.path[0].elements[1].value
     let type = e.path[0].elements[2].value
