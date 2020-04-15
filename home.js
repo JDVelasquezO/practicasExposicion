@@ -10,6 +10,10 @@ let id = 1
 
 form.addEventListener('submit', e => {
     e.preventDefault()
+    addPet()
+})
+
+let addPet = () => {
 
     pet = {
         id: id,
@@ -19,6 +23,11 @@ form.addEventListener('submit', e => {
     }
 
     array.push(pet)
+    showPet()
+}
+
+let showPet = () => {
+
     info.innerHTML = ''
 
     table = `
@@ -39,8 +48,8 @@ form.addEventListener('submit', e => {
                 <td>${p.weigth}</td>
                 <td>${p.type}</td>
                 <td>
-                    <button>Eliminar</button>
-                    <button>Actualizar</button>
+                    <button onclick='delPet(${p.id})'>Eliminar</button>
+                    <button onclick='updatePet()'>Actualizar</button>
                 </td>
             </tr>
         `
@@ -53,11 +62,23 @@ form.addEventListener('submit', e => {
 
     resetForm()
     id += 1
-})
+}
+
+let delPet = (id) => {
+    
+    petToDelete = array.find(pet => pet.id == id)
+    index = array.indexOf(petToDelete)
+    array.splice(index, 1)
+    showPet();
+}
+
+let updatePet = () => {
+
+}
 
 let resetForm = () => {
     name.value = ''
-    name.focus()
     weigth.value = ''
     type.value = ''
+    name.focus()
 }
