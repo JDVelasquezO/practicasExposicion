@@ -10,7 +10,13 @@ form.addEventListener('click', e => {
     
     if (!name.value || !email.value ||!password.value) {
         info.innerHTML = `
-            <p style='color:red'>Debes colocar todos tus datos</p>
+            <div class="col s12">
+                <div class="card red darken-1">
+                <div class="card-content white-text">
+                    <p>Debes llenar todos los campos</p>
+                </div>
+                </div>
+            </div>
         `
         setTimeout(() => {
             info.innerHTML = ``

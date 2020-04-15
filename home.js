@@ -31,7 +31,8 @@ let showPet = () => {
     info.innerHTML = ''
 
     table = `
-        <table border="1">
+    <div class="card">
+        <table class='striped' border="1">
             <th>
                 <td>Nombre</td>
                 <td>Edad</td>
@@ -48,8 +49,8 @@ let showPet = () => {
                 <td>${p.weigth}</td>
                 <td>${p.type}</td>
                 <td>
-                    <button onclick='delPet(${p.id})'>Eliminar</button>
-                    <button onclick='updatePet()'>Actualizar</button>
+                    <a class='red btn' onclick='delPet(${p.id})'>Eliminar</a>
+                    <a class='green btn' onclick='viewUpdatePet(${p.id})'>Actualizar</a>
                 </td>
             </tr>
         `
@@ -57,6 +58,7 @@ let showPet = () => {
 
     table += `
         </table>
+    </div>
     `
     info.innerHTML = table
 
@@ -72,8 +74,60 @@ let delPet = (id) => {
     showPet();
 }
 
-let updatePet = () => {
+let viewUpdatePet = (id) => {
 
+    info.innerHTML = ''
+    petFinded = array.find(pet => pet.id == id)
+    let name = petFinded.name
+    let weigth = petFinded.weigth
+    let type = petFinded.type
+
+    let formPet = `
+    <div class="row">
+        <div class="col s12">
+            <div class="card">
+                <form onsubmit='updatePet(event, ${id})'>
+                <div class="card-content">
+                        <input autofocus value='${name}' />
+                        <label for="name">Nombre de mascota</label>
+                        <input value='${weigth}' type='number' />
+                        <label for="email">Peso de mascota</label>
+                        <input value='${type}' type='text' />
+                        <label for="password">Tipo</label>
+                    </div>
+                    <div class="card-action">
+                        <button class="btn green" type="submit" name="action">
+                            Actualizar
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    `   
+    // <form onsubmit='updatePet(event, ${id})'>
+    //     Nombre: <input autofocus value='${name}' /><br>
+    //     Peso: <input value='${weigth}' type='number' /><br>
+    //     Tipo: <input value='${type}' /><br>
+    //     <button>Actualizar</button>
+    // </form>
+    info.innerHTML = formPet
+}
+
+let updatePet = (e, id) => {
+
+    e.preventDefault()
+    let name = e.path[0].elements[0].value
+    let weigth = e.path[0].elements[1].value
+    let type = e.path[0].elements[2].value
+    petFinded = array.find(pet => pet.id == id)
+
+    pet.name = name
+    pet.weigth = weigth
+    pet.type = type
+
+    showPet();
 }
 
 let resetForm = () => {
